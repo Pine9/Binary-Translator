@@ -4,3 +4,5 @@ This program can take three kinds of input: binary values, raw decimal values, a
 <p>#decimal# input - forces the translator to interpret input as being in the decimal format</p>
 <p>#binary# input - forces the translator to interpret input as being in the binary format</p>
 <p>#ascii# input - forces the translator to interpret input as being in the ascii format</p>
+
+<p>*ascii is actually unicode</p>
