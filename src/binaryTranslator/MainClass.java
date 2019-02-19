@@ -16,7 +16,7 @@ Be sure the substitute input for your actual argument.
 Override Commands:
 #decimal# input - forces the translator to interpret the input as being in the decimal format
 #binary# input - forces the translator to interpret the input as being in the binary format
-#ascii# input - forces the translator to interpret the input as being in the ascii format
+#unicode# input - forces the translator to interpret the input as being in the unicode format
 */
 public class MainClass 
 {
@@ -51,7 +51,7 @@ public class MainClass
                     return 2;
                 case "binary":
                     return 1;
-                case "ascii":
+                case "unicode":
                     return 3;
             }
         }
@@ -76,9 +76,9 @@ public class MainClass
             return DecimalToBinary.convert(Integer.parseInt(b));
     }
     
-    public static String spaceHandler(String b, int format, ArrayList<Character> ascii)
+    public static String spaceHandler(String b, int format, ArrayList<Character> unicode)
     {
-        // returns binary or decimal output and modifies ascii
+        // returns binary or decimal output and modifies unicode
         
         ArrayList<Integer> spaces = new ArrayList<Integer>();
         spaces.add(0);
@@ -94,17 +94,20 @@ public class MainClass
         for (int j = 0; j < spaces.size(); j++)
         {
             String currentblock;
+            
             if (j == 0)
                 currentblock = b.substring(0, spaces.get(1));
             else if (j == spaces.size() - 1)
                 currentblock = b.substring(spaces.get(j) + 1);
             else
                 currentblock = b.substring(spaces.get(j) + 1, spaces.get(j + 1));
+            
             output += " " + decide(currentblock, format);
+            
             if (format == 1) // if binary
-                ascii.add((char)BinaryToDecimal.convert(currentblock));
+                unicode.add((char)BinaryToDecimal.convert(currentblock));
             else // if decimal
-                ascii.add((char)Integer.parseInt(currentblock));
+                unicode.add((char)Integer.parseInt(currentblock));
         }
        
         return output;
@@ -127,14 +130,14 @@ public class MainClass
             if (b.indexOf(" ") > 0)
             {
                 System.out.println("Decimal: " + spaceHandler(b, 1, chardest));
-                System.out.print("ASCII: ");
+                System.out.print("Unicode: ");
                 for (Character chara : chardest)
                     System.out.print(" " + chara);
             }
             else
             {
                 System.out.println("Decimal : " + BinaryToDecimal.convert(b));
-                System.out.println("ASCII: " + (char)BinaryToDecimal.convert(b)); //default output for single stream on binary without spaces
+                System.out.println("Unicode: " + (char)BinaryToDecimal.convert(b)); //default output for single stream on binary without spaces
             }
             break;
             
@@ -142,14 +145,14 @@ public class MainClass
             if (b.indexOf(" ") > 0)
             {
                 System.out.println("Binary:" + spaceHandler(b, 2, chardest));
-                System.out.print("ASCII:");
+                System.out.print("Unicode:");
                 for (Character chara : chardest)
                     System.out.print(" " + chara);
             }
             else
             {
                 System.out.println("Binary: " + DecimalToBinary.convert( Integer.parseInt(b)) );
-                System.out.println("ASCII: " + (char)Integer.parseInt(b));
+                System.out.println("Unicode: " + (char)Integer.parseInt(b));
             }
             break;
             
