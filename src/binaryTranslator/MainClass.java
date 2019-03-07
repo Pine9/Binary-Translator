@@ -147,7 +147,7 @@ public class MainClass
                 System.out.println("Binary:" + spaceHandler(b, 2, chardest));
                 System.out.print("Unicode:");
                 for (Character chara : chardest)
-                    System.out.print(" " + chara);
+                    System.out.print(chara);
             }
             else
             {
