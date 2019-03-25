@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  *
  * @author Emma Adelmann
- * @version 1.0
+ * @version 1.1
  */
 /*
 This translator automatically detects what format its input is in, but there may be times
@@ -17,7 +17,9 @@ Override Commands:
 #decimal# input - forces the translator to interpret the input as being in the decimal format
 #binary# input - forces the translator to interpret the input as being in the binary format
 #unicode# input - forces the translator to interpret the input as being in the unicode format
+#exit# - lets you end the program
 */
+
 public class MainClass 
 {
     static Scanner sc = new Scanner(System.in);
@@ -53,6 +55,11 @@ public class MainClass
                     return 1;
                 case "unicode":
                     return 3;
+                case "exit":
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid command.");
+                    System.exit(1);
             }
         }
         
@@ -115,57 +122,58 @@ public class MainClass
     
     public static void main(String[] args)
     {
-        System.out.print("Enter your text here: ");
-        String b = sc.nextLine();
+        while (true) {
+            System.out.print("Enter your text here: ");
+            String b = sc.nextLine();
         
-        int format = getFormat(b);
-        if (b.startsWith("#"))
-            b = b.substring(parseCommand(b)[1] + 3);
+            int format = getFormat(b);
+            if (b.startsWith("#"))
+                b = b.substring(parseCommand(b)[1] + 3);
         
-        ArrayList<Character> chardest = new ArrayList<Character>(); 
+            ArrayList<Character> chardest = new ArrayList<Character>(); 
     
-        switch (format)
-        {
-            case 1:
-            if (b.indexOf(" ") > 0)
-            {
-                System.out.println("Decimal: " + spaceHandler(b, 1, chardest));
-                System.out.print("Unicode: ");
-                for (Character chara : chardest)
-                    System.out.print(" " + chara);
+                switch (format)
+                {
+                case 1:
+                if (b.indexOf(" ") > 0)
+                {
+                    System.out.println("Decimal: " + spaceHandler(b, 1, chardest));
+                    System.out.print("Unicode: ");
+                    for (Character chara : chardest)
+                        System.out.print(chara);
+                }
+                else
+                {
+                    System.out.println("Decimal : " + BinaryToDecimal.convert(b));
+                    System.out.println("Unicode: " + (char)BinaryToDecimal.convert(b)); //default output for single stream on binary without spaces
+                }
+                break;
+
+                case 2:
+                if (b.indexOf(" ") > 0)
+                {
+                    System.out.println("Binary:" + spaceHandler(b, 2, chardest));
+                    System.out.print("Unicode:");
+                    for (Character chara : chardest)
+                        System.out.print(" " + chara);
+                }
+                else
+                {
+                    System.out.println("Binary: " + DecimalToBinary.convert( Integer.parseInt(b)) );
+                    System.out.println("Unicode: " + (char)Integer.parseInt(b));
+                }
+                break;
+
+                case 3: // no spacehandler needed: space is a char
+                    System.out.println("Binary: " + DecimalToBinary.convert(b));
+                    System.out.print("Decimal:");
+                    for (int i = 0; i < b.length(); i++)
+                        System.out.print(" " + (int)b.charAt(i));
+                    System.out.println();
+                break;    
             }
-            else
-            {
-                System.out.println("Decimal : " + BinaryToDecimal.convert(b));
-                System.out.println("Unicode: " + (char)BinaryToDecimal.convert(b)); //default output for single stream on binary without spaces
-            }
-            break;
             
-            case 2:
-            if (b.indexOf(" ") > 0)
-            {
-                System.out.println("Binary:" + spaceHandler(b, 2, chardest));
-                System.out.print("Unicode:");
-                for (Character chara : chardest)
-                    System.out.print(chara);
-            }
-            else
-            {
-                System.out.println("Binary: " + DecimalToBinary.convert( Integer.parseInt(b)) );
-                System.out.println("Unicode: " + (char)Integer.parseInt(b));
-            }
-            break;
-            
-            case 3: // no spacehandler needed: space is a char
-                System.out.println("Binary: " + DecimalToBinary.convert(b));
-                System.out.print("Decimal:");
-                for (int i = 0; i < b.length(); i++)
-                    System.out.print(" " + (int)b.charAt(i));
                 System.out.println();
-            break;    
         }
-        
-        System.out.print("\nPress enter to close...");
-        sc.nextLine();
     }
 }
