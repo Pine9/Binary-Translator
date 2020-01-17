@@ -3,5 +3,6 @@ This program can take three kinds of input: binary values, raw decimal values, a
 
 <p>#decimal# input - forces the translator to interpret input as being in the decimal format</p>
 <p>#binary# input - forces the translator to interpret input as being in the binary format</p>
+<p>#signed# input - forces the translator to interpret input as being in the two's complement signed binary format</p>
 <p>#unicode# input - forces the translator to interpret input as being in the unicode format</p>
 <p>#exit# - force exits the program</p>
