@@ -7,4 +7,4 @@ This program can take three kinds of input: binary integer values, decimal integ
 <p>#unicode# input - forces the translator to interpret input as being in the unicode format</p>
 <p>#exit# - force exits the program</p>
 
-<p>This was one of my first coding projects that I have decided to continue maintaining as I gain more knowledge and experience. As such, my style and coding strategies have changed, but I try to keep things relatively consistent here.</p>
+<p>This was one of my first coding projects that I have decided to continue maintaining as I gain more knowledge and experience. As such, my style and coding strategies have since changed (and this project is regularly in need of overhaul), but I try to keep things relatively consistent. Stay tuned for fixes and changes.</p>
