@@ -3,7 +3,7 @@ This program can take three kinds of input: binary integer values, decimal integ
 
 <p>#decimal# input - forces the translator to interpret input as being in the decimal format</p>
 <p>#binary# input - forces the translator to interpret input as being in the binary format</p>
-<p>#signed# input - forces the translator to interpret input as being in the two's complement signed binary format (if put in negative decimal input, the binary output will automatically be in signed two's complement for that particular number)</p>
+<p>#signed# input - forces the translator to interpret input as being in the two's complement signed binary format (if you put in negative decimal input, the binary output will automatically be in signed two's complement for that particular number). right now, any negative decimal number translation smaller than -128 is not supported.</p>
 <p>#unicode# input - forces the translator to interpret input as being in the unicode format</p>
 <p>#exit# - force exits the program</p>
 
