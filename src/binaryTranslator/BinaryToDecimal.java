@@ -3,13 +3,15 @@ package binaryTranslator;
 /**
  *
  * @author Emma Adelmann
- * @version 1.1
  */
-public class BinaryToDecimal
-{
+public class BinaryToDecimal {
 
-    public static int convert(String b, int mode)
-    {
+    /*
+      Consumes a binary String to convert, and whether it is positive
+      (format == 0) or negative (format == 1).
+      Returns the decimal (base 10) conversion as an int.
+    */
+    public static int convert(String b, int mode) {
         int decimal = 0;
         int start = 0;
         int[] bitstream = new int[b.length()];
@@ -21,11 +23,11 @@ public class BinaryToDecimal
           start = 1;
         }
 
-        for (; start < b.length(); start++)
+        for (; start < b.length(); start++) {
             bitstream[start] = Integer.parseInt(b.substring(start, start + 1));
+        }
 
-        for (int bit : bitstream)
-        {
+        for (int bit : bitstream) {
             decimal += bit*Math.pow(2, pos);
             pos--;
         }
